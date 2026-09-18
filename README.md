@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/logo.png" alt="Sentinel" width="150" />
+<img src="./assets/logo.webp" alt="Sentinel" width="150" />
 
 # Sentinel
 
@@ -666,7 +666,7 @@ You can also open an issue in this repository with the label `contact`.
 
 <div align="center">
 
-<img src="./assets/logo.png" alt="Sentinel" width="90" />
+<img src="./assets/logo.webp" alt="Sentinel" width="90" />
 
 ## Sentinel
 
