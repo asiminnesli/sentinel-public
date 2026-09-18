@@ -6,7 +6,7 @@
 
 ### Engineering memory for teams and AI agents.
 
-**Git remembers what changed. Sentinel remembers why.**
+**Git remembers what changed. Sentinel remembers why.****
 
 Self-hosted engineering decision memory and governance for software teams.
 
@@ -18,15 +18,20 @@ Self-hosted engineering decision memory and governance for software teams.
 
 ## Why Sentinel?
 
-Software repositories remember **what changed**.
+Software repositories remember **what changed****.
 
 They usually do not remember:
 
 - why an architectural direction was chosen
+
 - which patterns the team intentionally rejected
+
 - which technical constraints are still active
+
 - whether a new change contradicts an earlier decision
+
 - why an exception was allowed
+
 - what an AI coding agent should know before touching the codebase
 
 That context ends up scattered across pull requests, Slack threads, tickets, meetings, and people's heads.
@@ -38,28 +43,51 @@ Sentinel turns it into durable engineering memory.
 ## How it works
 
 ```text
+
 Repository history
+
         │
+
         ▼
+
 Historical analysis
+
         │
+
         ▼
+
 Decision Candidates
+
         │
+
         ▼
+
 Human review
+
         │
+
         ▼
+
 Active Decisions
+
         │
+
         ▼
+
 New Git changes
+
         │
+
         ▼
+
 Continuous analysis
+
         │
+
         ▼
+
 Support / Conflict / Violation / New Candidate
+
 ```
 
 Sentinel does not treat every commit as a Decision.
@@ -74,16 +102,20 @@ It looks for durable engineering direction, keeps humans in control, and continu
 
 Decisions represent:
 
-> **What the team has decided.**
+> **What the team has decided.****
 
 They capture durable engineering direction, not just static rules.
 
 Examples:
 
 - use Prisma as the persistence layer
+
 - keep authentication behind a dedicated service
+
 - keep business logic out of HTTP handlers
+
 - preserve repository/service boundaries
+
 - centralize AI configuration
 
 ![Sentinel Decisions](./assets/decisions.png)
@@ -93,9 +125,13 @@ Decisions may evolve over time.
 Sentinel preserves whether a Decision is:
 
 ```text
+
 Active
+
 Superseded
+
 Deprecated
+
 ```
 
 so architectural history is not silently rewritten.
@@ -106,7 +142,7 @@ so architectural history is not silently rewritten.
 
 Findings represent:
 
-> **What needs attention.**
+> **What needs attention.****
 
 Sentinel surfaces three main types of Findings:
 
@@ -139,9 +175,13 @@ Sentinel v1 is advisory by design.
 It does not automatically:
 
 - block commits
+
 - block pushes
+
 - block merges
+
 - rewrite code
+
 - revert changes
 
 Instead, it gives developers, reviewers, and AI agents the context needed to make the right decision.
@@ -171,13 +211,17 @@ Sentinel supports explicit temporary Exceptions without silently weakening the u
 This lets teams distinguish between:
 
 ```text
+
 "This change violates our architecture."
+
 ```
 
 and:
 
 ```text
+
 "This deviation is intentionally allowed for now."
+
 ```
 
 ---
@@ -189,22 +233,39 @@ Sentinel continuously watches repository evolution.
 For GitHub repositories:
 
 ```text
+
 Developer pushes
+
       │
+
       ▼
+
 GitHub webhook
+
       │
+
       ▼
+
 Sentinel
+
       │
+
       ▼
+
 Fetch latest repository state
+
       │
+
       ▼
+
 Incremental analysis
+
       │
+
       ▼
+
 New Findings
+
 ```
 
 No manual sync is required during normal operation.
@@ -220,22 +281,39 @@ When a repository is connected for the first time, Sentinel analyzes its existin
 It looks for durable engineering directions that still appear to be true today.
 
 ```text
+
 Git history
+
     │
+
     ▼
+
 Signal extraction
+
     │
+
     ▼
+
 Related change clustering
+
     │
+
     ▼
+
 Engineering direction inference
+
     │
+
     ▼
+
 Current-state validation
+
     │
+
     ▼
+
 Decision Candidates
+
 ```
 
 Humans review those candidates before they become active governance.
@@ -246,7 +324,7 @@ Humans review those candidates before they become active governance.
 
 AI coding agents can write code quickly.
 
-But they usually enter a repository without knowing **why the system looks the way it does**.
+But they usually enter a repository without knowing **why the system looks the way it does****.
 
 Sentinel exposes engineering memory through MCP so an agent can ask:
 
@@ -277,7 +355,9 @@ Developers interact with Sentinel through the `sentinel` CLI.
 ### Login
 
 ```bash
+
 sentinel login https://sentinel.example.com
+
 ```
 
 ![Sentinel Login](./assets/login.gif)
@@ -285,7 +365,9 @@ sentinel login https://sentinel.example.com
 ### Verify identity
 
 ```bash
+
 sentinel whoami
+
 ```
 
 ![Sentinel Whoami](./assets/whoami.gif)
@@ -293,7 +375,9 @@ sentinel whoami
 ### Bind the current repository
 
 ```bash
+
 sentinel bind
+
 ```
 
 ![Sentinel Bind](./assets/bind.gif)
@@ -301,7 +385,9 @@ sentinel bind
 ### Check connection and workspace status
 
 ```bash
+
 sentinel status
+
 ```
 
 ![Sentinel Status](./assets/status.gif)
@@ -319,6 +405,7 @@ Sentinel works with MCP-compatible coding environments.
 Typical setup:
 
 ```bash
+
 sentinel login https://sentinel.example.com
 
 cd my-project
@@ -328,6 +415,7 @@ sentinel bind
 sentinel mcp install
 
 sentinel status
+
 ```
 
 ![Sentinel MCP](./assets/mcp.png)
@@ -335,10 +423,15 @@ sentinel status
 MCP capabilities include:
 
 ```text
+
 Get relevant engineering context
+
 Inspect active Decisions
+
 Check a proposed change
+
 Propose new engineering memory
+
 ```
 
 Human governance remains the final authority.
@@ -352,29 +445,49 @@ Every repository-scoped Sentinel MCP request is resolved from the current worksp
 Conceptually:
 
 ```text
+
 workspaceRoot
+
       │
+
       ▼
+
 Git repository
+
       │
+
       ▼
+
 Sentinel binding
+
       │
+
       ▼
+
 Matching Sentinel instance
+
       │
+
       ▼
+
 Matching repository
+
       │
+
       ▼
+
 Engineering context
+
 ```
 
 There is no fallback to:
 
 - previous repository
+
 - default repository
+
 - first repository
+
 - last used workspace
 
 This prevents engineering context from one repository being accidentally applied to another.
@@ -386,29 +499,46 @@ This prevents engineering context from one repository being accidentally applied
 Sentinel runs inside your environment.
 
 ```text
+
 ┌──────────────────────────────────────┐
+
 │        Your infrastructure           │
+
 │                                      │
+
 │   Sentinel                           │
+
 │   ├── Dashboard                      │
+
 │   ├── API                            │
+
 │   ├── Repository analysis            │
+
 │   ├── Engineering memory             │
+
 │   ├── Governance                     │
+
 │   └── AI integration                 │
+
 │                                      │
+
 │   PostgreSQL                         │
+
 │                                      │
+
 │   Your Git repositories              │
+
 │                                      │
+
 └──────────────────────────────────────┘
+
 ```
 
 Your code does not need to be sent to a hosted Sentinel service.
 
 Your repository history, Decisions, Findings, governance data, and AI configuration remain inside infrastructure you control.
 
-> **Private by architecture, not by policy.**
+> **Private by architecture, not by policy.****
 
 ---
 
@@ -419,9 +549,13 @@ Sentinel is designed to work with different AI environments.
 Supported deployment patterns include:
 
 - Gemini
+
 - OpenAI-compatible APIs
+
 - Ollama
+
 - vLLM
+
 - internal model gateways
 
 Teams remain in control of which model is used.
@@ -441,9 +575,13 @@ GitHub currently provides webhook integration, while the repository analysis and
 AI can:
 
 - analyze repository history
+
 - suggest Decision Candidates
+
 - detect support
+
 - detect conflicts
+
 - detect violations
 
 AI cannot silently turn its own output into permanent organizational policy.
@@ -451,10 +589,15 @@ AI cannot silently turn its own output into permanent organizational policy.
 Humans remain responsible for:
 
 - approving Decisions
+
 - rejecting Candidates
+
 - resolving Conflicts
+
 - resolving Violations
+
 - granting Exceptions
+
 - replacing or deprecating Decisions
 
 ---
@@ -464,10 +607,15 @@ Humans remain responsible for:
 Sentinel is designed for engineering teams that:
 
 - maintain non-trivial codebases
+
 - care about architectural consistency
+
 - use AI coding tools
+
 - have engineering context spread across people, PRs, tickets, and chat
+
 - want self-hosted infrastructure
+
 - want human control over AI-generated engineering guidance
 
 ---
@@ -477,48 +625,42 @@ Sentinel is designed for engineering teams that:
 Sentinel is not:
 
 - a generic code review bot
+
 - a linter
+
 - a static analysis replacement
+
 - a prompt manager
+
 - an AI coding agent
+
 - a Git replacement
+
 - a mandatory CI gate
 
 Sentinel is the engineering memory and governance layer around your development process.
 
 ---
 
-## Deployment
+## Interested in Sentinel?
 
-Sentinel is distributed as a self-hosted product.
+Sentinel is currently available for private evaluation with selected engineering teams.
 
-The standard deployment model is:
+If you are interested in:
 
-```text
-Docker Compose
-Sentinel
-PostgreSQL
-```
+- trying Sentinel with your team
+- evaluating it on a real repository
+- discussing self-hosted deployment
+- integrating Sentinel with your AI coding workflow
+- providing early product feedback
 
-Host operators manage the Sentinel instance with:
+feel free to get in touch.
 
-```bash
-sentinelctl
-```
+### Contact
 
-Developers interact with it using:
+GitHub: [@asiminnesli](https://github.com/asiminnesli)
 
-```bash
-sentinel
-```
-
----
-
-## Request access
-
-Sentinel is being prepared for early teams.
-
-If you are interested in evaluating Sentinel for your engineering organization, open an issue in this repository or contact the project owner.
+You can also open an issue in this repository with the label `contact`.
 
 ---
 
@@ -531,5 +673,7 @@ If you are interested in evaluating Sentinel for your engineering organization, 
 ### Git remembers what changed. Sentinel remembers why.
 
 Engineering memory for teams and AI agents.
+
+**Private evaluation available — contact me for access.**
 
 </div>
